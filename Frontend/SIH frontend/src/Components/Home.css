@@ -1,0 +1,19 @@
+/* Add some spacing to ensure clear separation */
+.feature {
+    margin-bottom: 20px; /* Adjust as needed */
+  }
+  
+  /* Ensure the container has a row layout */
+  .features-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px; /* Adjust gap between items */
+  }
+  
+  /* Ensure responsive behavior */
+  @media (max-width: 768px) {
+    .features-row {
+      flex-direction: column;
+    }
+  }
+  
