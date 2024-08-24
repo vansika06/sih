@@ -7,5 +7,5 @@ export default function App() {
     <>
       <Display Component={Home}/>
     </>
-  );
+  )
 }
