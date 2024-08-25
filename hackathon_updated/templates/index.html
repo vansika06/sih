@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Camera Capture and Model Prediction</title>
+    <style>
+        #video {
+            width: 100%;
+            max-width: 400px;
+        }
+        .frame {
+            margin: 5px;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <h1>Camera Capture and Model Prediction</h1>
+    <video id="video" autoplay></video>
+    <br>
+    <button id="captureBtn">Capture & Predict</button>
+    <div id="result-container">
+        <h2>Prediction Result:</h2>
+        <p id="result">No result yet.</p>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
