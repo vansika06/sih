@@ -19,9 +19,9 @@ const PhotoUploadComponent = () => {
   return (
     <>
       <div className="min-h-screen flex items-center justify-center bg-[#1E201E]">
-        <div className="bg-white p-8 rounded-lg shadow-xl max-w-lg w-full">
+        <div className="bg-white p-8 rounded-lg shadow-xl max-w-xl w-full">
           <h2 className="text-3xl font-semibold mb-6 text-center text-gray-700">
-            Let's check the photo verification of our website 
+            Let's check the photo verification
             <br>
             </br>
             Upload Your Photo

@@ -1,12 +1,40 @@
-import React, { useEffect } from "react";
-import './Landing.css'
+import React, { useEffect, useRef } from "react";
+import "./Landing.css";
 
 const LandingPage = () => {
+  const videoRef = useRef(null);
+
   useEffect(() => {
     AOS.init({
       duration: 1000, // Duration of animations
       once: true, // Whether animations should happen only once or every time you scroll up/down
     });
+    if (videoRef.current) {
+      videoRef.current.playbackRate = 2.0; // 2x speed; adjust as needed
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            videoRef.current.play();
+          } else {
+            videoRef.current.pause();
+          }
+        });
+      },
+      { threshold: 0.5 } // Play when 50% of the video is visible
+    );
+
+    if (videoRef.current) {
+      observer.observe(videoRef.current);
+    }
+
+    return () => {
+      if (videoRef.current) {
+        observer.unobserve(videoRef.current);
+      }
+    };
   }, []);
 
   return (
@@ -14,8 +42,8 @@ const LandingPage = () => {
       <section className="text-white py-20">
         <div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 items-center">
           <div className="text-center md:text-left">
-            <div class="wrapper text-2xl">
-              <div class="typing-demo">Secure Face authentication</div>
+            <div className="wrapper text-2xl">
+              <div className="typing-demo">Secure Face authentication</div>
             </div>
           </div>
           <div className="flex justify-center md:justify-end">
@@ -88,6 +116,24 @@ const LandingPage = () => {
           </h2>
 
           <div
+            data-aos="fade-left"
+            data-aos-delay="100"
+            className="flex items-center justify-center mb-24"
+          >
+            <h1 className="text-5xl font-extrabold text-white mb-15 mr-28">
+              1. Face Liveness
+            </h1>
+            <video
+              ref={videoRef}
+              src="./8090200-uhd_4096_2160_25fps.mp4"
+              alt="Face Liveness"
+              className="w-44 h-44 md:w-48 md:h-48 lg:w-64 lg:h-64 rounded-lg shadow-lg"
+              muted
+              loop
+            />
+          </div>
+
+          <div
             data-aos="fade-right"
             data-aos-delay="100"
             className="flex justify-center mb-24"
@@ -98,21 +144,21 @@ const LandingPage = () => {
               className="w-32 h-32 md:w-48 md:h-48 mr-20 lg:w-64 lg:h-64 rounded-lg shadow-lg"
             />
             <h1 className="text-5xl font-extrabold text-white mt-20">
-              1. Upload an Image
+              2. Upload an Image
             </h1>
           </div>
 
           <div
             data-aos="fade-left"
             data-aos-delay="100"
-            className="flex justify-center mb-24 "
+            className="flex justify-center mb-24"
           >
             <h1 className="text-5xl font-extrabold text-white mt-20">
-              2. Enable Webcam
+              3. Enable Webcam
             </h1>
             <img
               src="https://th.bing.com/th/id/OIP.fk_UR518-btWdflRVh4sIQHaEK?rs=1&pid=ImgDetMain"
-              alt="Upload Your Image"
+              alt="Enable Webcam"
               className="w-32 h-32 md:w-48 md:h-48 ml-20 lg:w-64 lg:h-64 rounded-lg shadow-lg"
             />
           </div>
@@ -120,18 +166,19 @@ const LandingPage = () => {
           <div
             data-aos="fade-right"
             data-aos-delay="100"
-            className="flex justify-center mb-24 "
+            className="flex justify-center mb-24"
           >
-            {" "}
             <img
-              src="https://th.bing.com/th/id/OIP.ppjMDonXVr-2EOykcrwRZgHaE8?rs=1&pid=ImgDetMain "
-              alt="Upload Your Image"
+              src="https://th.bing.com/th/id/OIP.ppjMDonXVr-2EOykcrwRZgHaE8?rs=1&pid=ImgDetMain"
+              alt="Authentication Step 3"
               className="w-44 h-32 md:w-48 md:h-48 mr-20 lg:w-64 lg:h-64 rounded-lg shadow-lg"
             />
             <h1 className="text-5xl font-extrabold text-white mt-20">
-              3. Authentication
+              4. Authentication
             </h1>
           </div>
+
+          
         </div>
       </section>
 
@@ -148,29 +195,6 @@ const LandingPage = () => {
           </p>
         </div>
       </section>
-
-      {/* Contact Section */}
-      <section id="contact" className="py-20">
-        <div className="container mx-auto px-6 text-center">
-          <h2 className="text-3xl font-bold mb-8">Contact Us</h2>
-          <p className="mb-4">
-            Have questions or need support? Reach out to us.
-          </p>
-          <a
-            href="mailto:support@uidai.gov.in"
-            className="text-blue-500 hover:underline"
-          >
-            support@uidai.gov.in
-          </a>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="bg-gray-800 text-white py-6">
-        <div className="container mx-auto px-6 text-center">
-          <p>&copy; 2024 UIDAI. All rights reserved.</p>
-        </div>
-      </footer>
     </div>
   );
 };

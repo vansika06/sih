@@ -7,7 +7,7 @@ const Display = ({ children }) => {
   return (
     <>
       <Navbar />
-      <main className="container mx-auto mt-4">{children}</main>
+      <main className="">{children}</main>
       <Footer />
     </>
   );

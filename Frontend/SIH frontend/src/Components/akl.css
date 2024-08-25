@@ -1,0 +1,33 @@
+.wrapper {
+    height: 100vh;
+    /* Centering the content */
+    display: grid;
+    place-items: center;
+  }
+  
+  .typing-demo {
+    width: 40ch; /* Adjust the width to match the text length */
+    animation: typing 3s steps(22), blink .5s step-end infinite alternate;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 3px solid;
+    font-family: monospace;
+    font-size: 0px;
+    box-sizing: border-box;
+  }
+  
+  @keyframes typing {
+    from {
+      width: 0;
+    }
+    to {
+      width: 22ch; /* Same as the width set above */
+    }
+  }
+  
+  @keyframes blink {
+    50% {
+      border-color: transparent;
+    }
+  }
+  

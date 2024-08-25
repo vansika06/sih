@@ -1,9 +1,9 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Display from "./Display.jsx";
-import Home from "./Components/Home .jsx";
 import PhotoUploadComponent from "./Components/Aadharface.jsx";
 import LandingPage from "./Components/Landing.jsx";
+import Meteors from "./Components/magicui/meteors.jsx";
 
 export default function App() {
   return (
@@ -11,8 +11,8 @@ export default function App() {
       <Display>
         <Routes>
           <Route path="/uploadphoto" element={<PhotoUploadComponent />} />
-          <Route path="/" element={<LandingPage />} />
-          <Route path="/landingpage" element={< Home/>} />
+          <Route path="/" element={< Meteors/>} />
+          <Route path="/landingpage" element={< LandingPage/>} />
         </Routes>
       </Display>
     </Router>

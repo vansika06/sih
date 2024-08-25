@@ -1,44 +1,54 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import './Home.css'; // Import the CSS file
 
-function Home() {
+const numStars = 50; // Number of stars
+
+const getRandomValue = (min, max) => {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+};
+
+const generateStars = () => {
+  console.log("Aaagaue")
+  return Array.from({ length: numStars }).map((_, index) => {
+    const topOffset = getRandomValue(0, 10000) / 100;
+    const starTailLength = getRandomValue(500, 750) / 100;
+    const fallDuration = getRandomValue(6000, 12000) / 1000;
+    const fallDelay = getRandomValue(0, 10000) / 1000;
+
+    return {
+      topOffset: `${topOffset}vh`,
+      starTailLength: `${starTailLength}em`,
+      fallDuration: `${fallDuration}s`,
+      fallDelay: `${fallDelay}s`,
+    };
+  });
+};
+
+const StarryBackground = () => {
+  const [stars, setStars] = useState([]);
+
+  useEffect(() => {
+    setStars(generateStars());
+  }, []);
+
   return (
-    <div className="min-h-screen bg-gray-100">
-      <section className="bg-white">
-        <div className="container mx-auto px-6 py-16 text-center">
-          <h2 className="text-3xl font-semibold text-gray-800">Welcome to Your Project</h2>
-          <p className="text-gray-600 mt-4">Build the future of secure authentication with our advanced face detection technology.</p>
-          <button className="mt-8 bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600">
-            Get Started
-          </button>
-        </div>
-      </section>
-      <section id="features" className="bg-gray-100 py-16">
-        <div className="container mx-auto px-6 text-center">
-          <h3 className="text-2xl font-semibold text-gray-800">Features</h3>
-          <div className="flex flex-col items-center mt-8 space-y-8">
-            <div className="w-full md:w-1/2 lg:w-1/3 p-4" data-aos="fade-left">
-              <div className="bg-white rounded-lg p-6 shadow-lg">
-                <h4 className="text-lg font-semibold text-gray-800">Fast Liveness Detection</h4>
-                <p className="text-gray-600 mt-2">Ensure users are real and present with our lightning-fast liveness detection.</p>
-              </div>
-            </div>
-            <div className="w-full md:w-1/2 lg:w-1/3 p-4" data-aos="fade-right" data-aos-delay="100">
-              <div className="bg-white rounded-lg p-6 shadow-lg">
-                <h4 className="text-lg font-semibold text-gray-800">Easy Integration</h4>
-                <p className="text-gray-600 mt-2">Integrate our solution easily into your web application with minimal setup.</p>
-              </div>
-            </div>
-            <div className="w-full md:w-1/2 lg:w-1/3 p-4" data-aos="fade-left" data-aos-delay="100">
-              <div className="bg-white rounded-lg p-6 shadow-lg">
-                <h4 className="text-lg font-semibold text-gray-800">High Accuracy</h4>
-                <p className="text-gray-600 mt-2">Experience high accuracy in detecting face spoofing and ensuring security.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+    <div className="relative overflow-hidden w-full h-full bg-gradient-to-b from-blue-900 to-black">
+      <div className="stars-container">
+        {stars.map((star, index) => (
+          <div
+            key={index}
+            className="star"
+            style={{
+              top: star.topOffset,
+              width: star.starTailLength,
+              animationDuration: star.fallDuration,
+              animationDelay: star.fallDelay,
+            }}
+          />
+        ))}
+      </div>
     </div>
   );
-}
+};
 
-export default Home;
+export default StarryBackground;
